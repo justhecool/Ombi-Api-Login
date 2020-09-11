@@ -1,6 +1,6 @@
 # Ombi Api Login
  Simple, alternative login page for Ombi. With added ability to ask users to access to your plex server by [PHPMailer](https://github.com/PHPMailer/PHPMailer);
- Uses JWT to auth in junction with localstorage. [JWT-Decode](https://github.com/auth0/jwt-decode)
+ Uses JWT to auth in localstorage. [JWT-Decode](https://github.com/auth0/jwt-decode)
 ## Installation
 Simply download the files and place them on your webserver and change the values inside of config.php
 ## Usage
