@@ -18,4 +18,5 @@ Simply download the files and place them on your webserver and change the values
     'email' => '@gmail.com',
     'password' => 'your email password',
 ~~~~
-   
+## Example Website
+Check out [Plex-Requests](https://plex-requests.tk) to see the design/functionality (Uikit + Semantic Ui).
