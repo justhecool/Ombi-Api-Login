@@ -17,14 +17,12 @@ class Api
     }
 
     public function requirePassword($username){
-	    $url = call_user_func_array('sprintf', array(
+	$url = call_user_func_array('sprintf', array(
         '%s/requirePassword',
         rtrim($this->config['api_url'])
         ));
         $data = array(
-
             'username' => $username,
-
         );
         $response = $this->curl($url, 'POST', json_encode($data));
         return $response;
@@ -37,10 +35,8 @@ class Api
         rtrim($this->config['api_url'])
         ));
         $data = array(
-
             'username' => $username,
             'password' => $password
-
         );
         $response = $this->curl($url, 'POST', json_encode($data));
         return $response;
@@ -76,16 +72,12 @@ class Api
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         }
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        foreach ($curlOptions as $option => $value) {
-            curl_setopt($ch, $option, $value);
-        }
         $body = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($httpCode === 0) {
             $body = curl_error($ch);
         }
         $result = curl_exec($ch);
-
         curl_close($ch);
 
         return $result;
