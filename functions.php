@@ -52,7 +52,7 @@ class Api
         }
         return false;
     }
-    private function curl($url, $method = 'GET', $postFields = null, $curlOptions = array(), $xfacOptions = array())
+    private function curl($url, $method = 'GET', $postFields = null)
     {
         $ch = curl_init();
         $requestHeaders = array();
@@ -75,7 +75,6 @@ class Api
         } elseif (is_string($postFields)) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         }
-        //curl_setopt($ch, CURLOPT_HEADERFUNCTION, array($this,"curlHeaderFunction"));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         foreach ($curlOptions as $option => $value) {
             curl_setopt($ch, $option, $value);
