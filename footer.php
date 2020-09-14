@@ -1,5 +1,6 @@
-<?php
-require_once __DIR__ . '/functions.php';
+<?php $page_id=0;
+if ($page_id==1)
+	require_once __DIR__ . '/functions.php';
 $api = new Api();
 	{?>
 	<div class="ui info-panel terms tiny modal">
