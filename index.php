@@ -31,23 +31,16 @@ $api = new Api();
             $json = json_decode($token, true);
             if ($token !== null && $json['access_token'] !== null) {
                 $response['token'] = $json['access_token'];
-                //WIP
-                //TODO use API
-                if ($uname == 'justhecool' xor $uname == 'Justhecool'){
-	                $response['url'] = '/admin';}
-	            else
-	            {$response['url'] ='/requests/discover';}
+                
                 $response['success'] = true;
                 echo json_encode($response);
 
             } else {
                 $errors = $api->getLastErrors();
                 $error = json_encode($errors);
-                if ($uname == 'justhecool' xor $uname == 'Justhecool'){
-	                $response['g_auth'] = true;
-                } elseif ($errors == false) {
+				if ($errors == false) {
                     $response['success'] = false;
-                    $response['msg'] = 'Incorrect username. Please try again.';
+                    $response['msg'] = 'Incorrect username or Requires password.';
                 }
                // var_dump($errors);
                 echo json_encode($response);
@@ -66,21 +59,29 @@ $api = new Api();
 	                <img src="images/plex-requests.png"/>
                     <form id="appLogin" method="post">
                         <div class="uk-margin">
-                            <div class="uk-inline ui icon input">
-                            <span class="uk-form-icon" uk-icon="icon: user"></span>
-                            <input class="uk-input" name="username" type="text" id="username" autocomplete="user-name" placeholder="Plex Username">
-                            </div><i class="circular info link icon"></i>
+	                        <i class="circular info link icon"></i>  
                         </div>
                         <div class="uk-margin">
+                            <div class="uk-inline ui icon input">
+                            <span class="uk-form-icon" uk-icon="icon: user"></span>
+                            <input class="uk-input" name="username" type="text" id="username" autocomplete="email" placeholder="Plex Username/Email">
+                            </div>
                         </div>
-                      <input name="pwd" value="" id="password" type="hidden">
+                        <!-- If Ombi requires password, remove this style = display none -->
+	                       <div class="uk-margin req-pw" style="display:none;"> 
+		                    <div class="uk-inline ui icon input">
+                            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                            <input class="uk-input" name="pwd" value="" type="password" id="password" autocomplete="password" placeholder="">
+                            </div></div>
+                        <div class="uk-margin">
+                        </div>
                     </form>
             <div class="uk-width-expand@m">
-	            <button class="ui blue basic button join">
+	            <button class="ui blue basic button inverted join">
                 <i class="icon user plus"></i>
                     Join
                 </button>
-                <button onclick="login()" class="ui green basic button">
+                <button onclick="login()" class="ui green inverted button">
                 <i class="icon sign-in"></i>
                     Sign In
                 </button>
@@ -103,11 +104,11 @@ $api = new Api();
                         </div>
                     </form>
             <div class="uk-width-expand@m">
-	            <button  class="ui blue  basic button login">
+	            <button  class="ui blue  basic button inverted login">
                 <i class="icon sign-in"></i>
                     Sign In
                 </button>
-                <button type="submit" form="appJoin" class="ui green basic button join">
+                <button type="submit" form="appJoin" class="ui green inverted button join">
                 <i class="icon user plus"></i>
                     Join
                 </button>
