@@ -6,8 +6,8 @@ if (token != null) {
     var decode = jwt_decode(token);
       function isAuthenticated(decode) {
         try {
-            const {exp} = decode.exp;
-            if (Date.now() >= exp * 1000) {
+            var clockTime = Math.floor(Date.now() / 1000);
+            if (clockTime >= decode.exp ) {
                 return false;
             }
         } catch (err) {
@@ -21,11 +21,14 @@ if (token != null) {
 		   if (decode.role.indexOf("Admin") > -1){
             $(window).attr('location', base_url + '/admin/');
 		   }
-	    }
+            $(window).attr('location', base_url + '/requests/discover');
+        }
+        else {
+            $(window).attr('location', base_url + '/requests/discover');
+            // user only has 1 role?
+        }
         if (decode.role === "Admin") {
             $(window).attr('location', base_url + '/admin/');
-        } else {
-            $(window).attr('location', base_url + '/requests/discover');
         }
     } else {
         localStorage.clear();
@@ -54,11 +57,12 @@ function login() {
 		   if (key.role.indexOf("Admin") > -1){
             $(window).attr('location', base_url + '/admin/');
 		   }
-	    }
+                 $(window).attr('location', base_url + '/requests/discover');
+	    } else {
+                 $(window).attr('location', base_url + '/requests/discover');
+             }
         if (key.role === "Admin") {
             $(window).attr('location', base_url + '/admin/');
-        } else {
-            $(window).attr('location', base_url + '/requests/discover');
         }
                 }
              if (data.success === false) {
