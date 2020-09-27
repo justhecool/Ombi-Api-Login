@@ -1,0 +1,11 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.png -f
+RewriteRule ^(.*)$ $1.png
+
+#NGINX ONLY
+#location /images {
+#if ($request_uri ~ ^/(.*)\.png) {
+#        return 302 /$1; }
+#    try_files $uri $uri.png $uri/ =404;
+# }
